@@ -28,7 +28,7 @@ import { pageSelector } from './selectors';
  * After we add the keys to frontend-platform, this mergeConfig can go away
  */
 mergeConfig({
-  ORDER_HISTORY_URL: process.env.ORDER_HISTORY_URL,
+  ORDER_HISTORY_ENDPOINT_URL: process.env.ORDER_HISTORY_ENDPOINT_URL,
   RECEIPT_URL: process.env.RECEIPT_URL,
 });
 
