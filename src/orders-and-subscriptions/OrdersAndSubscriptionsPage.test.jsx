@@ -19,7 +19,7 @@ const testHeadings = (hasSections = true, hasSubscriptions = true) => {
     // Assert the main heading is present
     expect(getByText('My orders and subscriptions')).toBeInTheDocument();
     expect(
-      getByText('Manage your program subscriptions and view your order history.'),
+      getByText('View your program subscriptions and your order history.'),
     ).toBeInTheDocument();
     // Assert Subscription and Order History sections are rendered
     expect(getByText('Subscriptions')).toBeInTheDocument();
@@ -28,7 +28,7 @@ const testHeadings = (hasSections = true, hasSubscriptions = true) => {
     // Assert only Order History section is rendered
     expect(queryByText('My orders and subscriptions')).toBeNull();
     expect(
-      queryByText('Manage your program subscriptions and view your order history.'),
+      queryByText('View your program subscriptions and your order history.'),
     ).toBeNull();
     expect(getByText('Order History')).toBeInTheDocument();
     expect(queryByText('Subscriptions')).toBeNull();
@@ -40,7 +40,7 @@ const testHeadingsLoading = (hasSections = true, hasSubscriptions = true) => {
     // Assert loading, nothing is rendered
     expect(queryByText('My orders and subscriptions')).toBeNull();
     expect(
-      queryByText('Manage your program subscriptions and view your order history.'),
+      queryByText('View your program subscriptions and your order history.'),
     ).toBeNull();
     expect(queryByText('Subscriptions')).toBeNull();
     expect(queryByText('Order History')).toBeNull();
@@ -53,7 +53,7 @@ const testHeadingsError = (hasSections = true, hasSubscriptions = true) => {
     // Assert only Order History sections is rendered
     expect(queryByText('My orders and subscriptions')).toBeNull();
     expect(
-      queryByText('Manage your program subscriptions and view your order history.'),
+      queryByText('View your program subscriptions and your order history.'),
     ).toBeNull();
     expect(queryByText('Subscriptions')).toBeNull();
     expect(getByText('Order History')).toBeInTheDocument();
@@ -62,7 +62,7 @@ const testHeadingsError = (hasSections = true, hasSubscriptions = true) => {
     // Assert the main heading is present
     expect(getByText('My orders and subscriptions')).toBeInTheDocument();
     expect(
-      getByText('Manage your program subscriptions and view your order history.'),
+      getByText('View your program subscriptions and your order history.'),
     ).toBeInTheDocument();
     // Assert Subscription and Order History sections are rendered
     expect(getByText('Subscriptions')).toBeInTheDocument();
