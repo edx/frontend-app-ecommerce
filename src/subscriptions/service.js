@@ -3,7 +3,7 @@ import { getConfig } from '@edx/frontend-platform';
 
 const createURL = (url) => `${getConfig().SUBSCRIPTIONS_BASE_URL}/api/v1${url}`;
 
-export async function getSubscriptions() {
+export default async function getSubscriptions() {
   const httpClient = getAuthenticatedHttpClient();
 
   const stripeUserSubscriptionsUrl = createURL('/stripe-user-subscriptions/');
@@ -18,14 +18,4 @@ export async function getSubscriptions() {
         ? 'trial'
         : subscription.subscription_state?.toLowerCase(),
   }));
-}
-
-export async function getStripeCustomerPortalURL() {
-  const httpClient = getAuthenticatedHttpClient();
-
-  const stripePortalURL = createURL('/stripe-portal/');
-
-  const { data } = await httpClient.post(stripePortalURL);
-
-  return data.portal_url;
 }
