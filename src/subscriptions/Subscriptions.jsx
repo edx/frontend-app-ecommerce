@@ -30,10 +30,6 @@ const Subscriptions = () => {
     2: 'ecommerce.order.history.subscriptions.subtitle.multiple',
   }[Math.min(activeCount, 2)];
 
-  const buttonLabel = formatMessage(
-    messages['ecommerce.order.history.subscriptions.manage.button'],
-  );
-
   const handeAlertClose = () => {
     dispatch(clearStripeError());
   };
@@ -57,7 +53,6 @@ const Subscriptions = () => {
         <span className="text-dark-900" data-testid="subscription-subtitle">
           {formatMessage(messages[subtitle], {
             activeCount,
-            buttonLabel: <i>{buttonLabel}</i>,
           })}
         </span>
       </div>

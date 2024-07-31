@@ -71,7 +71,7 @@ const OrdersAndSubscriptionsPage = () => {
         </FormattedMessage>
         <FormattedMessage
           id="ecommerce.order.history.main.subtitle"
-          defaultMessage="Manage your program subscriptions and view your order history."
+          defaultMessage="View your program subscriptions and your order history."
           description="Subtitle of Heading for orders and subscriptions page."
         >
           {(text) => <span className="text-dark-900">{text}</span>}
