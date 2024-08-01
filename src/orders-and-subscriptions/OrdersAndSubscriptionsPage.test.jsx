@@ -17,19 +17,13 @@ const {
 const testHeadings = (hasSections = true, hasSubscriptions = true) => {
   if (hasSections && hasSubscriptions) {
     // Assert the main heading is present
-    expect(getByText('My orders and subscriptions')).toBeInTheDocument();
-    expect(
-      getByText('View your program subscriptions and your order history.'),
-    ).toBeInTheDocument();
+    expect(getByText('My order history')).toBeInTheDocument();
     // Assert Subscription and Order History sections are rendered
     expect(getByText('Subscriptions')).toBeInTheDocument();
     expect(getByText('Order History')).toBeInTheDocument();
   } else if (!hasSections && !hasSubscriptions) {
     // Assert only Order History section is rendered
-    expect(queryByText('My orders and subscriptions')).toBeNull();
-    expect(
-      queryByText('View your program subscriptions and your order history.'),
-    ).toBeNull();
+    expect(queryByText('My order history')).toBeNull();
     expect(getByText('Order History')).toBeInTheDocument();
     expect(queryByText('Subscriptions')).toBeNull();
   }
@@ -38,10 +32,7 @@ const testHeadings = (hasSections = true, hasSubscriptions = true) => {
 const testHeadingsLoading = (hasSections = true, hasSubscriptions = true) => {
   if (!hasSections && !hasSubscriptions) {
     // Assert loading, nothing is rendered
-    expect(queryByText('My orders and subscriptions')).toBeNull();
-    expect(
-      queryByText('View your program subscriptions and your order history.'),
-    ).toBeNull();
+    expect(queryByText('My order history')).toBeNull();
     expect(queryByText('Subscriptions')).toBeNull();
     expect(queryByText('Order History')).toBeNull();
   }
@@ -51,19 +42,13 @@ const testHeadingsError = (hasSections = true, hasSubscriptions = true) => {
   if (!hasSections && !hasSubscriptions) {
     // Error with no subscriptions
     // Assert only Order History sections is rendered
-    expect(queryByText('My orders and subscriptions')).toBeNull();
-    expect(
-      queryByText('View your program subscriptions and your order history.'),
-    ).toBeNull();
+    expect(queryByText('My order history')).toBeNull();
     expect(queryByText('Subscriptions')).toBeNull();
     expect(getByText('Order History')).toBeInTheDocument();
   } else if (hasSections && hasSubscriptions) {
     // Error but has subscriptions
     // Assert the main heading is present
-    expect(getByText('My orders and subscriptions')).toBeInTheDocument();
-    expect(
-      getByText('View your program subscriptions and your order history.'),
-    ).toBeInTheDocument();
+    expect(getByText('My order history')).toBeInTheDocument();
     // Assert Subscription and Order History sections are rendered
     expect(getByText('Subscriptions')).toBeInTheDocument();
     expect(getByText('Order History')).toBeInTheDocument();
