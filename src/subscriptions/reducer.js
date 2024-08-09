@@ -6,7 +6,7 @@ export const initialState = {
   subscriptions: [],
   stripeError: false,
   stripeLoading: false,
-  shouldShowSubscriptionsSection: true,
+  shouldShowSubscriptionsSection: false, // B2C subscriptions sunsetting
 };
 
 const subscriptionsReducer = (state = initialState, action = {}) => {
