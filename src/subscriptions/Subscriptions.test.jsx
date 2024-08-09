@@ -19,7 +19,6 @@ jest.mock('@edx/frontend-platform', () => ({
 const {
   getByText,
   getByTestId,
-  getAllByText,
   getAllByTestId,
   queryByText,
   queryByTestId,
@@ -38,10 +37,10 @@ describe('<Subscriptions />', () => {
     it('Renders appropriate subscription heading', () => {
       expect(getByText('Subscriptions')).toBeInTheDocument();
       expect(getByTestId('subscription-subtitle').textContent).toMatch(
-        /You have 2 active subscriptions\. To view your receipts, change your payment method or cancel your subscription, click.*Manage my subscriptions/,
+        /You have 2 active subscriptions\. To view your receipts, please contact support/,
       );
-      // Assert the button is rendered
-      expect(getAllByText('Manage my subscriptions')).toHaveLength(2);
+      // Assert the button is not rendered
+      expect(queryByText('Manage my subscriptions')).toBeNull();
     });
 
     it('Renders subscription cards', () => {
@@ -147,10 +146,10 @@ describe('<Subscriptions />', () => {
     it('Renders appropriate subscription heading', () => {
       expect(getByText('Subscriptions')).toBeInTheDocument();
       expect(getByTestId('subscription-subtitle').textContent).toMatch(
-        /You do not have an active subscription\. To view your past receipts, click.*Manage my subscriptions/,
+        /You do not have an active subscription\. To view your past receipts, please contact support/,
       );
-      // Assert the button is rendered
-      expect(getAllByText('Manage my subscriptions')).toHaveLength(2);
+      // Assert the button is not rendered
+      expect(queryByText('Manage my subscriptions')).toBeNull();
     });
 
     it('Render subscription cards', () => {

@@ -64,17 +64,10 @@ const OrdersAndSubscriptionsPage = () => {
         <BasicAlert isVisible={hasError} />
         <FormattedMessage
           id="ecommerce.order.history.main.heading"
-          defaultMessage="My orders and subscriptions"
+          defaultMessage="My order history"
           description="Heading for orders and subscriptions page."
         >
           {(text) => <h1 className="text-primary-700">{text}</h1>}
-        </FormattedMessage>
-        <FormattedMessage
-          id="ecommerce.order.history.main.subtitle"
-          defaultMessage="Manage your program subscriptions and view your order history."
-          description="Subtitle of Heading for orders and subscriptions page."
-        >
-          {(text) => <span className="text-dark-900">{text}</span>}
         </FormattedMessage>
       </div>
       <Subscriptions />

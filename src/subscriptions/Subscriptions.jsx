@@ -1,16 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendTrackEvent } from '@edx/frontend-platform/analytics';
 import { FormattedMessage, useIntl } from '@edx/frontend-platform/i18n';
-import { StatefulButton } from '@edx/paragon';
-import { Launch, SpinnerSimple } from '@edx/paragon/icons';
 
 import { BasicAlert } from '../components';
 
 import SubscriptionCardsView from './SubscriptionCardsView';
 import SubscriptionUpsell from './SubscriptionUpsell';
 
-import { clearStripeError, fetchStripeCustomerPortalURL } from './actions';
+import { clearStripeError } from './actions';
 import { subscriptionsSelector } from './selectors';
 
 import messages from './Subscriptions.messages';
@@ -20,9 +17,7 @@ const Subscriptions = () => {
   const dispatch = useDispatch();
   const {
     subscriptions,
-    stripeCustomerPortalURL,
     stripeError,
-    stripeLoading,
   } = useSelector(subscriptionsSelector);
   const hasSubscriptions = subscriptions.length > 0;
   const activeCount = subscriptions.filter(
@@ -35,28 +30,9 @@ const Subscriptions = () => {
     2: 'ecommerce.order.history.subscriptions.subtitle.multiple',
   }[Math.min(activeCount, 2)];
 
-  const buttonLabel = formatMessage(
-    messages['ecommerce.order.history.subscriptions.manage.button'],
-  );
-
-  const handleManageSubscriptionsClick = () => {
-    sendTrackEvent('edx.bi.user.subscription.order-page.manage.clicked');
-    dispatch(fetchStripeCustomerPortalURL());
-  };
-
   const handeAlertClose = () => {
     dispatch(clearStripeError());
   };
-
-  useEffect(() => {
-    if (stripeCustomerPortalURL) {
-      window.open(stripeCustomerPortalURL, '_blank', 'noopener,noreferrer');
-    }
-  }, [stripeCustomerPortalURL]);
-
-  const renderSpinner = () => (
-    <div className="icon-spin">{SpinnerSimple()}</div>
-  );
 
   const renderEmpty = () => (
     <>
@@ -77,18 +53,8 @@ const Subscriptions = () => {
         <span className="text-dark-900" data-testid="subscription-subtitle">
           {formatMessage(messages[subtitle], {
             activeCount,
-            buttonLabel: <i>{buttonLabel}</i>,
           })}
         </span>
-        <StatefulButton
-          size="sm"
-          className="text-nowrap"
-          labels={{ default: buttonLabel }}
-          icons={{ default: undefined }}
-          iconAfter={stripeLoading ? renderSpinner : Launch}
-          state={stripeLoading ? 'pending' : 'default'}
-          onClick={handleManageSubscriptionsClick}
-        />
       </div>
       <SubscriptionCardsView subscriptions={subscriptions} />
       <BasicAlert isModal isVisible={stripeError} onClose={handeAlertClose} />
