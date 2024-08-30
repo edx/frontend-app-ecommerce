@@ -1,12 +1,12 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 import { fetchSubscriptions, hideSubscriptionSection } from './actions';
-import getSubscriptions from './service';
 
 function* handleFetchSubscriptions() {
   try {
     yield put(fetchSubscriptions.request());
-    const result = yield call(getSubscriptions);
+    // B2C subscriptions sunsetting, removed the subscriptions API call
+    const result = [];
     if (!result?.length) {
       yield put(hideSubscriptionSection());
     }
