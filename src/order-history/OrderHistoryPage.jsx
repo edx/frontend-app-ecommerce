@@ -58,7 +58,7 @@ class OrderHistoryPage extends React.Component {
       // eslint-disable-next-line react/style-prop-object
       total: <FormattedNumber value={total} style="currency" currency={currency} />,
       receiptUrl: (
-        <Hyperlink destination={receiptUrl}>
+        <Hyperlink destination={receiptUrl} target="_blank">
           {this.props.intl.formatMessage(messages['ecommerce.order.history.view.order.detail'])}
         </Hyperlink>
       ),
